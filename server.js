@@ -12,7 +12,14 @@ const openai = new OpenAI({
 });
 
 const app = express();
-app.use(cors());
+
+// CORS setup - update with your frontend URL
+app.use(
+  cors({
+    origin: "https://https://simple-ai-client.vercel.app/", // Replace with your actual frontend URL
+  })
+);
+
 app.use(express.json());
 
 app.get("/", async (req, res) => {
