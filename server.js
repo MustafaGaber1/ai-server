@@ -16,7 +16,8 @@ const app = express();
 // CORS setup - update with your frontend URL
 app.use(
   cors({
-    origin: "https://https://simple-ai-client.vercel.app/", // Replace with your actual frontend URL
+    origin:
+      "https://simple-ai-client-git-main-mustafa-gabers-projects.vercel.app/", // Replace with your actual frontend URL
   })
 );
 
