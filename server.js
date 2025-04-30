@@ -16,19 +16,20 @@ const app = express();
 // CORS setup - update with your frontend URL
 app.use(
   cors({
-    origin:
-      "https://simple-ai-client-git-main-mustafa-gabers-projects.vercel.app", // Replace with your actual frontend URL
+    origin: process.env.FRONTEND_URL, // Use an environment variable for flexibility
   })
 );
 
 app.use(express.json());
 
+// A simple endpoint to check the server status
 app.get("/", async (req, res) => {
   res.status(200).send({
     message: "Hello from Simple AI",
   });
 });
 
+// Route to handle requests from the frontend
 app.post("/", async (req, res) => {
   try {
     const prompt = req.body.prompt;
@@ -43,13 +44,14 @@ app.post("/", async (req, res) => {
       bot: response.choices[0].message.content,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res
       .status(500)
       .send({ error: "An error occurred while processing your request." });
   }
 });
 
+// Start the server and listen on the specified port
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server is running on port http://0.0.0.0:${PORT}`);
+  console.log(`Server is running on http://0.0.0.0:${PORT}`);
 });
